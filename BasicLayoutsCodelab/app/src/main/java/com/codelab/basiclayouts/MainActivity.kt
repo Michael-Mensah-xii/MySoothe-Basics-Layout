@@ -70,9 +70,10 @@ fun SearchBar(
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
-                contentDescription = null)
+                contentDescription = null
+            )
         },
-        colors =TextFieldDefaults.textFieldColors(
+        colors = TextFieldDefaults.textFieldColors(
             backgroundColor = MaterialTheme.colors.surface
         ),
         placeholder = {
@@ -80,7 +81,8 @@ fun SearchBar(
         },
         modifier = modifier
             .fillMaxWidth()
-            .heightIn(min = 56.dp))
+            .heightIn(min = 56.dp)
+    )
 }
 
 // Step: Align your body - Alignment
@@ -91,13 +93,13 @@ fun AlignYourBodyElement(
     modifier: Modifier = Modifier
 ) {
     Column(
-            modifier = Modifier,
+        modifier = Modifier,
         horizontalAlignment = Alignment.CenterHorizontally // sets the alignment of the inversions text horizontally
     ) {
         Image(
             painter = painterResource(id = drawable),
             contentDescription = null,
-            contentScale= ContentScale.Crop, //crops image composable
+            contentScale = ContentScale.Crop, //crops image composable
             modifier = Modifier
                 .size(88.dp)
                 .clip(CircleShape) //sets the image composable to a shape
@@ -119,17 +121,17 @@ fun FavoriteCollectionCard(
     @DrawableRes drawable: Int,  //making it dynamic
     @StringRes text: Int
 ) {
-    Surface (
+    Surface(
         shape = MaterialTheme.shapes.small, // sets default shape in themes.kt for the image
         modifier = Modifier
-        ) {
+    ) {
         Row(
-            verticalAlignment= Alignment.CenterVertically, // sets vertical alignment for the row
+            verticalAlignment = Alignment.CenterVertically, // sets vertical alignment for the row
             modifier = Modifier.width(192.dp), // sets padding for text in row
 
         ) {
             Image(
-                painter = painterResource(id = drawable) ,
+                painter = painterResource(id = drawable),
                 contentDescription = null,
                 contentScale = ContentScale.Crop, // crops image giving square shape
                 modifier = Modifier
@@ -137,12 +139,13 @@ fun FavoriteCollectionCard(
                     .clip(MaterialTheme.shapes.small)
 
             )
-            Text(stringResource(id = text),
+            Text(
+                stringResource(id = text),
                 style = MaterialTheme.typography.h3,
                 modifier = Modifier.padding(horizontal = 16.dp)
 
             )
-            
+
         }
     }
 }
@@ -159,8 +162,9 @@ fun AlignYourBodyRow(
         content = {
             items(alignYourBodyData) { item ->
                 AlignYourBodyElement(
-                    drawable = item.drawable ,
-                    text = item.text )
+                    drawable = item.drawable,
+                    text = item.text
+                )
             }
         }
     )
@@ -173,19 +177,19 @@ fun FavoriteCollectionsGrid(
 ) {
     LazyHorizontalGrid(
         // assigns a simple implementation of the grid with two fixed rows
-        rows = GridCells.Fixed(2) ,
+        rows = GridCells.Fixed(2),
         contentPadding = PaddingValues(horizontal = 16.dp), //ensures padding is maintained while scrolling
         horizontalArrangement = Arrangement.spacedBy(8.dp), //spaces elements in grid by 8dp horizontally
         verticalArrangement = Arrangement.spacedBy(8.dp), //spaces elements in grid by 8dp vertically
         modifier = modifier.height(120.dp) // sets height of grid to 120 dp
-    ){
+    ) {
         items(favoriteCollectionsData) { item ->
-              FavoriteCollectionCard(
-                drawable = item.drawable ,
+            FavoriteCollectionCard(
+                drawable = item.drawable,
                 text = item.text,
                 modifier = Modifier.height(56.dp)
             )
-            
+
         }
     }
 }
@@ -198,7 +202,8 @@ fun HomeSection(
     content: @Composable () -> Unit
 ) {
     Column(modifier) {
-        Text(text = stringResource(title).uppercase(Locale.getDefault()),// shows title in uppercase
+        Text(
+            text = stringResource(title).uppercase(Locale.getDefault()),// shows title in uppercase
             style = MaterialTheme.typography.h2,
             // add some padding to the top of title of 40 dp and underneath title of 8dp
             modifier = Modifier
@@ -218,7 +223,8 @@ fun HomeScreen(modifier: Modifier = Modifier) {
     Column(
         modifier
             .padding(horizontal = 16.dp)
-            .verticalScroll(rememberScrollState())) {
+            .verticalScroll(rememberScrollState())
+    ) {
         Spacer(Modifier.height(16.dp))
         SearchBar()
         HomeSection(title = R.string.align_your_body) {
@@ -235,17 +241,17 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun SootheBottomNavigation(modifier: Modifier = Modifier) {
     BottomNavigation(
-        modifier=modifier,
+        modifier = modifier,
         //this sets background colour of the bottom nav to the default material theme  
         backgroundColor = MaterialTheme.colors.background
-     ) {
+    ) {
         BottomNavigationItem(
-            selected =true,
+            selected = true,
             onClick = { /*TODO*/ },
             //set the icon for spa
             icon = {
                 Icon(Icons.Default.Spa, contentDescription = null)
-                   } ,
+            },
             // label describes what the icon is 
             label = {
                 Text(stringResource(id = R.string.bottom_navigation_home))
@@ -253,12 +259,12 @@ private fun SootheBottomNavigation(modifier: Modifier = Modifier) {
             }
         )
         BottomNavigationItem(
-            selected =false, // sets the selected state to false by default
+            selected = false, // sets the selected state to false by default
             onClick = { /*TODO*/ },
             //set the icon for spa
             icon = {
                 Icon(Icons.Default.AccountCircle, contentDescription = null)
-            } ,
+            },
             // label describes what the icon is
             label = {
                 Text(stringResource(id = R.string.bottom_navigation_profile))
